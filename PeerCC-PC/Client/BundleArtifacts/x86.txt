@@ -1,0 +1,3 @@
+MainPackage=D:\Clone\webrtc\Run\Hololens_Git\hololens\PeerCC-PC\Output\PeerCC.Client\WebRtc\bin\x86\Release\PeerConnectionClient.WebRtc_1.0.2.0_x86.appx
+SymbolPackage=D:\Clone\webrtc\Run\Hololens_Git\hololens\PeerCC-PC\Client\AppPackages\PeerConnectionClient.WebRtc_1.0.2.0_Test\PeerConnectionClient.WebRtc_1.0.2.0_x86.appxsym
+ResourcePack=D:\Clone\webrtc\Run\Hololens_Git\hololens\PeerCC-PC\Output\PeerCC.Client\WebRtc\bin\x86\Release\PeerConnectionClient.WebRtc_1.0.2.0_scale-100.appx
