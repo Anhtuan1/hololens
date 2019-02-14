@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "backup112019", "backup112019.csproj", "{911BA6CD-98FD-B23D-3667-E857B9AB5701}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "backup112019.Editor", "backup112019.Editor.csproj", "{DF0C0983-658D-A6BA-E76D-68404F275BFF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{911BA6CD-98FD-B23D-3667-E857B9AB5701}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{911BA6CD-98FD-B23D-3667-E857B9AB5701}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{911BA6CD-98FD-B23D-3667-E857B9AB5701}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{911BA6CD-98FD-B23D-3667-E857B9AB5701}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF0C0983-658D-A6BA-E76D-68404F275BFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF0C0983-658D-A6BA-E76D-68404F275BFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF0C0983-658D-A6BA-E76D-68404F275BFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF0C0983-658D-A6BA-E76D-68404F275BFF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

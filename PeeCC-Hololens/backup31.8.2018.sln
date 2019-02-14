@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "backup31.8.2018", "backup31.8.2018.csproj", "{D598F996-BC0D-B606-FEBF-E6E99C9F5C5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "backup31.8.2018.Editor", "backup31.8.2018.Editor.csproj", "{51CF408B-1244-11ED-BA47-886BDAE08654}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D598F996-BC0D-B606-FEBF-E6E99C9F5C5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D598F996-BC0D-B606-FEBF-E6E99C9F5C5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D598F996-BC0D-B606-FEBF-E6E99C9F5C5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D598F996-BC0D-B606-FEBF-E6E99C9F5C5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51CF408B-1244-11ED-BA47-886BDAE08654}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51CF408B-1244-11ED-BA47-886BDAE08654}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51CF408B-1244-11ED-BA47-886BDAE08654}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51CF408B-1244-11ED-BA47-886BDAE08654}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

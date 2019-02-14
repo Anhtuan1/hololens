@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeerConnectionClient.WebRtc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeerConnectionClientCore", "ClientCore\PeerConnectionClientCore.csproj", "{217FAA3A-8FC1-4663-BA00-2F842B3FF4E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsSocketWrapper", "..\..\..\..\TrungCode\News\WindowsSocketWrapper\WindowsSocketWrapper\WindowsSocketWrapper.csproj", "{D88AFBD7-80FC-40A7-8392-084BC8CD4207}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsSocketWrapper", "WindowsSocketWrapper\WindowsSocketWrapper.csproj", "{D88AFBD7-80FC-40A7-8392-084BC8CD4207}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

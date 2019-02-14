@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hololenswebrtc", "Assembly-CSharp.csproj", "{CC52305D-A7ED-AE52-7AFA-B493C56CF566}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hololenswebrtc", "Assembly-CSharp-Editor.csproj", "{B8E8B273-15D5-67B7-0704-D16397E44DA3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC52305D-A7ED-AE52-7AFA-B493C56CF566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC52305D-A7ED-AE52-7AFA-B493C56CF566}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC52305D-A7ED-AE52-7AFA-B493C56CF566}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC52305D-A7ED-AE52-7AFA-B493C56CF566}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8E8B273-15D5-67B7-0704-D16397E44DA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8E8B273-15D5-67B7-0704-D16397E44DA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8E8B273-15D5-67B7-0704-D16397E44DA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8E8B273-15D5-67B7-0704-D16397E44DA3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -180,13 +180,13 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\TrungCode\News\WindowsSocketWrapper\WindowsSocketWrapper\WindowsSocketWrapper.csproj">
-      <Project>{d88afbd7-80fc-40a7-8392-084bc8cd4207}</Project>
-      <Name>WindowsSocketWrapper</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ClientCore\PeerConnectionClientCore.csproj">
       <Project>{217faa3a-8fc1-4663-ba00-2f842b3ff4e1}</Project>
       <Name>PeerConnectionClientCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WindowsSocketWrapper\WindowsSocketWrapper.csproj">
+      <Project>{d88afbd7-80fc-40a7-8392-084bc8cd4207}</Project>
+      <Name>WindowsSocketWrapper</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

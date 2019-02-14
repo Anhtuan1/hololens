@@ -1,0 +1,8 @@
+G:\Development\HoloLens\Learning\Plugins\WindowsSocketWrapper\WindowsSocketWrapperUnity\obj\Debug\WindowsSocketWrapperUnity.csprojAssemblyReference.cache
+G:\Development\HoloLens\Learning\Plugins\WindowsSocketWrapper\WindowsSocketWrapperUnity\obj\Debug\WindowsSocketWrapperUnity.csproj.CoreCompileInputs.cache
+G:\Development\HoloLens\Learning\UnityWithWindowsWebSockets\Assets\Plugins\WindowsSocketWrapper.dll
+G:\Development\HoloLens\Learning\UnityWithWindowsWebSockets\Assets\Plugins\WindowsSocketWrapper.pdb
+G:\Development\HoloLens\Learning\Plugins\WindowsSocketWrapper\WindowsSocketWrapperUnity\obj\Debug\WindowsSocketWrapper.dll
+G:\Development\HoloLens\Learning\Plugins\WindowsSocketWrapper\WindowsSocketWrapperUnity\obj\Debug\WindowsSocketWrapper.pdb
+G:\Development\HoloLens\Learning\PeerCC-Sample-master\PeerCC-Sample-master\ClientUnity\Unity\PeerCCUnity8\Assets\Plugins\WindowsSocketWrapper.dll
+G:\Development\HoloLens\Learning\PeerCC-Sample-master\PeerCC-Sample-master\ClientUnity\Unity\PeerCCUnity8\Assets\Plugins\WindowsSocketWrapper.pdb
