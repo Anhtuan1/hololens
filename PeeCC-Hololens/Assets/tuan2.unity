@@ -2544,7 +2544,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 192.168.50.132
+  m_Text: 192.168.50.108
 --- !u!222 &725544843
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7838,7 +7838,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: 192.168.1.138
+  m_Text: 192.168.50.108
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -7944,6 +7944,11 @@ Prefab:
       propertyPath: Cusor
       value: 
       objectReference: {fileID: 1045607493}
+    - target: {fileID: 114903310663076348, guid: 17cb640f24c349a46bfaffdd6b8e166b,
+        type: 2}
+      propertyPath: host
+      value: ws://192.168.50.108:3001/socket.io/?EIO=4&transport=websocket
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17cb640f24c349a46bfaffdd6b8e166b, type: 2}
   m_IsPrefabParent: 0

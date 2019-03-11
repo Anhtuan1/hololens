@@ -5,11 +5,7 @@ const bodyParser = require('body-parser');
 
 var server = http.createServer(app);
 var io = socketIo.listen(server);
-// app.use(bodyParser.json({ limit: '4000mb' }));
-// app.use(bodyParser.urlencoded({
-//   extended: true,
-//   limit: '4000mb'
-// }))
+
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });

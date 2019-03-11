@@ -97,7 +97,7 @@ namespace PeerConnectionClient
 
         
 
-            private void objectManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+        private void objectManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
             var stackDragged = e.OriginalSource as StackPanel;
             (stackDragged.RenderTransform as TranslateTransform).X += e.Delta.Translation.X;
@@ -105,14 +105,15 @@ namespace PeerConnectionClient
         }
        
 
-
+        //Connect socket to SERVER2. If status is disconnect 
         private void OnDisconnection_handler(bool connect)
         {
             try
             {
                 if (!connect)
                 {
-                    socketWrapper.Connect("ws://192.168.50.132:3001/socket.io/?EIO=4&transport=websocket");
+                    //Edit ip socket
+                    socketWrapper.Connect("ws://192.168.50.108:3001/socket.io/?EIO=4&transport=websocket");
                 }
                 else
                 {
@@ -124,24 +125,27 @@ namespace PeerConnectionClient
                 Debug.WriteLine(ex.Message);
             }
         }
+
         public MainPage()
         {
             this.InitializeComponent();
+
+            //Call the pointers of the screen. We use the pointers for draw and send position
             pointers = new Dictionary<uint, Windows.UI.Xaml.Input.Pointer>();
+
             VideoBorder.PointerMoved += new PointerEventHandler(VideoBorder_PointerMoved);
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
 
 
             try
             {
-                // connect to socket.io via other server
+                // connect to socket.io via other server when App start
                 socketWrapper = new SocketWrapper();
 
                 socketWrapper.OnReceiveMessenger += OnReceivedMessage_handler;
-                socketWrapper.onDisconnect += OnDisconnection_handler;
-                Debug.WriteLine("TEst Connect");
-                socketWrapper.Connect("ws://192.168.50.132:3001/socket.io/?EIO=4&transport=websocket");
-                Debug.WriteLine("after connect");
+                socketWrapper.onDisconnect += OnDisconnection_handler;                
+                socketWrapper.Connect("ws://192.168.50.108:3001/socket.io/?EIO=4&transport=websocket");
+                
             }
             catch (Exception ex)
             {
@@ -321,6 +325,8 @@ namespace PeerConnectionClient
         /// </summary>
         /// <param name="sender">The object where the handler is attached.</param>
         /// <param name="e">Details about the exception routed event.</param>
+
+
         private void SelfVideo_MediaFailed(object sender, Windows.UI.Xaml.ExceptionRoutedEventArgs e)
         {
             if (_mainViewModel != null)
@@ -329,34 +335,56 @@ namespace PeerConnectionClient
             }
         }
 
+        //*******************
+        // Action Enable Draw  
+        //*******************
         private void Draw_star(object sender, RoutedEventArgs e)
         {
             draw_status = true;
             Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Person, 0);
+
+            //Hidden button enable draw and show button disable draw
             Action_event.Visibility = Visibility.Collapsed;
             Action_event1_2.Visibility = Visibility.Visible;
            
         }
+
+        //********************
+        // Action disable draw
+        //********************
         private void Draw_star2(object sender, RoutedEventArgs e)
         {
             draw_status = false;
             Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 0);
+
+            //Hidden button disable draw and show button enable draw
             Action_event.Visibility = Visibility.Visible;
             Action_event1_2.Visibility = Visibility.Collapsed;
         }
 
+        //********************************
+        // Action send position of pointer
+        //********************************
         private void Arraw_star(object sender, RoutedEventArgs e)
         {
+            
             arraw_status = true;
             Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 0);
+
+            //Hidden button enable send position and show button disable send position
             Action_event_21.Visibility = Visibility.Visible;
             Action_event_2.Visibility = Visibility.Collapsed;
         }
 
+        //*****************************************
+        // Action Disable send position of pointer
+        //*****************************************
         private void Arraw_star2(object sender, RoutedEventArgs e)
         {
             arraw_status = false;
             Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 0);
+
+            //Hidden button disable send position and show button enable send position
             Action_event_2.Visibility = Visibility.Visible;
             Action_event_21.Visibility = Visibility.Collapsed;
         }
@@ -378,21 +406,21 @@ namespace PeerConnectionClient
                     var storageFile = items[0] as StorageFile;
                     var bitmapImage = new BitmapImage();
                     bitmapImage.SetSource(await storageFile.OpenAsync(FileAccessMode.Read));
-                    //DroppedImage.Source = bitmapImage;
-                    //drag_image.Width = bitmapImage.PixelWidth;
-                    //drag_image.Height = bitmapImage.PixelHeight;
+                    
                 }
             }
         }
+
+        //******************************
+        // Action send Image to Hololens
+        //******************************
         private void Button_send_image(object sender, TappedRoutedEventArgs e)
         {
             
             // Convert the byte array to Base 64 string
             string base64String = Convert.ToBase64String(picAttachment);
             socketWrapper.SendMessage("mess", "base64position" + screenCoords.ToString() + ","  + ImagePreview.ActualWidth + "," + ImagePreview.ActualHeight+","+ rotate_x+","+resize_x);
-            Debug.WriteLine("base64position"+screenCoords.ToString());
-            Debug.WriteLine(ImagePreview.ActualHeight);
-            Debug.WriteLine(ImagePreview.ActualWidth);
+            
             socketWrapper.SendMessage("mess", "base64string" + base64String);    
             
             ImagePreview.Children.Clear();
@@ -403,6 +431,8 @@ namespace PeerConnectionClient
             Action_event_8.Visibility = Visibility.Collapsed;
             CompositeTransform ct = ImagePreview.RenderTransform as CompositeTransform;
             if (ct == null) ImagePreview.RenderTransform = ct = new CompositeTransform();
+
+            // Setting rotate, size and scale
             ct.Rotation = 0;
             ct.ScaleX = 1;
             ct.ScaleY = 1;
@@ -478,11 +508,11 @@ namespace PeerConnectionClient
                 Image myImage1 = new Image();
                 
                 myImage1.Source = image;
-                //Debug.WriteLine("px2 " + (((float) image.PixelHeight / (float)image.PixelWidth) ).ToString());
+                
                 myImage1.Width = 400;
                 myImage1.Height = (int) (((float)image.PixelHeight /((float)image.PixelWidth))*400);
                 screenCoords = new Point(400, (int) ((float)image.PixelHeight / ((float)image.PixelWidth)) * 400+792);
-                Debug.WriteLine("screenCoords"+ screenCoords.ToString());
+                
                 myImage1.Stretch = Stretch.UniformToFill;
                 myImage1.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;                
                 myImage1.ManipulationCompleted += Img_ManipulationCompleted;
@@ -492,7 +522,7 @@ namespace PeerConnectionClient
                 myImage1.ManipulationDelta += image_ManipulationDelta;
                                 
                 ImagePreview.Children.Add(myImage1);
-                //var ttv = ImagePreview.TransformToVisual(Window.Current.Content);
+                
                 
                 
                 
@@ -530,8 +560,7 @@ namespace PeerConnectionClient
             ct.TranslateX += e.Delta.Translation.X;
             screenCoords.X = (int) ct.TranslateX;
             ct.TranslateY += e.Delta.Translation.Y;
-            screenCoords.Y = (int) ct.TranslateY;
-           // Debug.WriteLine("screenCoords2" + screenCoords.ToString());
+            screenCoords.Y = (int) ct.TranslateY;           
         }
 
         void Img_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e, CompositeTransform mytransform)
@@ -547,7 +576,11 @@ namespace PeerConnectionClient
             image.Opacity = 1;
         }
 
-
+        //*********************************************************
+        // Send data positon to Hololens: Type data
+        //  + Start_arrow : keyword send position choose
+        //  + x:{0},y:{1} : position x,y of pointer
+        //*********************************************************
         private void star_send(object sender, PointerRoutedEventArgs e)
         {
             points = new PointCollection();
@@ -570,20 +603,20 @@ namespace PeerConnectionClient
                     if (coorY < 0) { coorY = 0; }
                     if (coorY > 792) { coorY = 792; }
                     string mesg = "Start_arrow {" + string.Format("x:{0},y:{1}", coorX, coorY) + "}";
-                    //LoadImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/1234321.png"));
-                    //var ct = (CompositeTransform)LoadImage.RenderTransform;
-                    //ct.TranslateX = coorX - 25;
-                    //ct.TranslateY = coorY - 50;
+                    
                     Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Pin, 0);
                     socketWrapper.SendMessage("mess", mesg);
                 }
                 catch (Exception ex)
                 {
-                    //Debug.WriteLine(ex.Message);
+                    Debug.WriteLine(ex.Message);
                 }
             }
         }
 
+        //*********************************************************
+        //Action end move. Send keyword to Hololens
+        //*********************************************************
         private void end_send(object sender, PointerRoutedEventArgs e)
         {
             line_demo.Points = new PointCollection();
@@ -592,6 +625,10 @@ namespace PeerConnectionClient
             socketWrapper.SendMessage("mess", "End_move");
         }
 
+        //*********************************************************
+        // Send data of mouse when that move to Hololens: Type data        
+        //  + x:{0},y:{1} : position x,y of pointer
+        //*********************************************************
         private void VideoBorder_PointerMoved(object sender, PointerRoutedEventArgs e)
         {
             try
@@ -612,7 +649,7 @@ namespace PeerConnectionClient
                     Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Pin, 0);
                     socketWrapper.SendMessage("mess", mesg);
                 }
-                // socketWrapper.SendMessage("mess", mesg);
+                
             }
             catch (Exception ex)
             {

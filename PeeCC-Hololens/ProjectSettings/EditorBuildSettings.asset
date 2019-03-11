@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/tuan2.unity
     guid: 186c67a2952d162498a04ce49098644a
+  - enabled: 1
+    path: Assets/tuan3.unity
+    guid: 1408c14f2fec66c44a70f6843c9ba06e

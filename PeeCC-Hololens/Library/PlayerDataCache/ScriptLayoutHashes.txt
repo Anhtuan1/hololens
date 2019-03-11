@@ -1,8 +1,8 @@
 Metro
 PlayerPath?
-D:/Clone/webrtc/Run/backup112019/New folder (5)
+D:/Clone/webrtc/Run/Hololens_Git/hololens/PeeCC-Hololens/App
 SceneListBegin?
-Assets/tuan2.unity
+Assets/tuan3.unity
 SceneListEnd?
 164f83c44a1101c7d0d42b5b04796185 Assembly-CSharp.dll:.textScript
 7abde016883951c4ca4e7c44ce6adb2c Assembly-CSharp.dll:HoloToolkit.Unity.SceneLauncher

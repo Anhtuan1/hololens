@@ -9,7 +9,7 @@ public class SocketInit : MonoBehaviour
 
     public TextMesh text;
     public TextMesh check_width_height;
-    public string host = "ws://192.168.50.132:3001/socket.io/?EIO=4&transport=websocket";
+    public string host = "ws://192.168.50.108:3001/socket.io/?EIO=4&transport=websocket";
     public GameObject moveObject;
     public GameObject object_move;
     public GameObject moveObject2;
@@ -40,10 +40,7 @@ public class SocketInit : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        mainCamera = Camera.main;
-        //GameObject MyObject = Resources.Load("Move") as GameObject;
-        //object_move = Instantiate(MyObject) as GameObject;
-
+        mainCamera = Camera.main; 
     }
     public void OnStart()
     {
@@ -68,21 +65,14 @@ public class SocketInit : MonoBehaviour
                 convertedBase64String = new Texture2D(image_push_width, image_push_height);
                 byte[] decodedBytes = Convert.FromBase64String(iconBase64String);
                 convertedBase64String.LoadImage(decodedBytes);
-                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                //    // cube.transform.localScale = new Vector3(0.015f, 0.015f, 0.015f);
-                //    // cube.transform.position = new Vector3(pointInRealWorld.x, pointInRealWorld.y, pointInRealWorld.z);
+                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);                
                 cube.transform.localScale = new Vector3(0.28f * image_scale, 0.28f * image_scale, 0.005f);
-
-                cube.AddComponent<BoxCollider>();
-                //cube.AddComponent<Move>();
+                cube.AddComponent<BoxCollider>();                
                 cube.AddComponent<ClickImageAction>();
-                cube.GetComponent<Renderer>().material.mainTexture = convertedBase64String;
-                //text.text = iconBase64String.Length.ToString() + iconBase64String[0] + iconBase64String[1] + iconBase64String[iconBase64String.Length - 2] + iconBase64String[iconBase64String.Length - 1];
-                //text.text = image_push_width + " " + image_push_height + " " + image_push_x + " " + image_push_y;
+                cube.GetComponent<Renderer>().material.mainTexture = convertedBase64String;                
                 text.text = test_string;
                 iconBase64String = "";
-                Vector3 poinGetposition = new Vector3();
-                //cube.transform.Rotate(new Vector3(mainCamera.transform.rotation.x, mainCamera.transform.rotation.y, 180+image_rotate));
+                Vector3 poinGetposition = new Vector3();                
                 cube.transform.eulerAngles = new Vector3(transform.eulerAngles.x, mainCamera.transform.eulerAngles.y, 180 - image_rotate);
                 poinGetposition = mainCamera.ScreenToWorldPoint(new Vector3(image_push_x, image_push_y, mainCamera.nearClipPlane));
                 //real screen positions
@@ -161,11 +151,7 @@ public class SocketInit : MonoBehaviour
                     float td_z = (poi_cam_y + pointInRealWorld.z) / 2;
                     float x_test = (5 * pointInRealWorld.x - poi_cam_x) / 4;
                     float y_test = (5 * pointInRealWorld.y - poi_cam_y) / 4;
-                    float z_test = (5 * pointInRealWorld.z - poi_cam_z) / 4;
-                    //GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    // cube.transform.localScale = new Vector3(0.015f, 0.015f, 0.015f);
-                    // cube.transform.position = new Vector3(pointInRealWorld.x, pointInRealWorld.y, pointInRealWorld.z);
-                    //cube.transform.localScale = new Vector3(0.015f, 0.015f, 0.015f);
+                    float z_test = (5 * pointInRealWorld.z - poi_cam_z) / 4;                    
                     object_move.transform.position = new Vector3(x_test, y_test, z_test);
 					if (check_trial == 1) {                
 						object_move.AddComponent<TrailRenderer>();
@@ -174,33 +160,7 @@ public class SocketInit : MonoBehaviour
 						object_move.GetComponent<TrailRenderer>().endWidth = 0.01f;
 						object_move.GetComponent<TrailRenderer>().time = 20f;
 						check_trial = 0;
-					}
-            //if (kc4 > kc1)
-            //{
-            //    GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            //    // cube.transform.localScale = new Vector3(0.015f, 0.015f, 0.015f);
-            //    // cube.transform.position = new Vector3(pointInRealWorld.x, pointInRealWorld.y, pointInRealWorld.z);
-            //     cube.transform.localScale = new Vector3(0.015f, 0.015f, 0.015f);
-            //     cube.transform.position = new Vector3(pointInRealWorld.x, pointInRealWorld.y, z2);
-            //}
-            //else
-            //{
-            //    GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            //    // cube.transform.localScale = new Vector3(0.015f, 0.015f, 0.015f);
-            //    // cube.transform.position = new Vector3(pointInRealWorld.x, pointInRealWorld.y, pointInRealWorld.z);
-            //    cube.transform.localScale = new Vector3(0.015f, 0.015f, 0.015f);
-            //    cube.transform.position = new Vector3(pointInRealWorld.x, pointInRealWorld.y, z1);
-
-            //}
-
-            //GameObject cube2 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-
-            //cube2.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-            //cube2.transform.position = new Vector3(pointInRealWorld.x, pointInRealWorld.y, pointInRealWorld.z);
-            //cube2.transform.position = new Vector3(x_cusor2, y_cusor2, y_cusor2);
-            //moveObject2.transform.localScale = new Vector3(0.007f, 0.007f, 0.007f);
-            //moveObject2.transform.position = new Vector3(screenX, screenY, mainCamera.nearClipPlane);
-            //check_width_height.text = x_cusor.ToString() + " " + y_cusor.ToString() + " " + cusor_z.ToString();
+					}            
 
             if (status_arraw == 1)
             {

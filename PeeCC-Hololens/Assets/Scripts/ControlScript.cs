@@ -99,7 +99,7 @@ public class ControlScript : MonoBehaviour
         Conductor.Instance.Initialize(CoreApplication.MainView.CoreWindow.Dispatcher);
         Conductor.Instance.EnableLogging(Conductor.LogLevel.Verbose);
 #endif
-        ServerAddressInputField.text = "192.168.50.132";
+        ServerAddressInputField.text = "192.168.50.108";
     }
 
     private void OnEnable()
@@ -109,7 +109,7 @@ public class ControlScript : MonoBehaviour
             IntPtr nativeTex = IntPtr.Zero;
             Plugin.GetLocalPrimaryTexture(LocalTextureWidth, LocalTextureHeight, out nativeTex);
             var primaryPlaybackTexture = Texture2D.CreateExternalTexture((int)LocalTextureWidth, (int)LocalTextureHeight, TextureFormat.BGRA32, false, false, nativeTex);
-            //LocalVideoImage.texture = primaryPlaybackTexture;
+            
             LocalVideoImageRender.material.mainTexture = primaryPlaybackTexture;
         }
 
@@ -117,19 +117,15 @@ public class ControlScript : MonoBehaviour
             Plugin.CreateRemoteMediaPlayback();
             IntPtr nativeTex = IntPtr.Zero;
             Plugin.GetRemotePrimaryTexture(RemoteTextureWidth, RemoteTextureHeight, out nativeTex);
-            //Debug.Log("Cao Rong "+ RemoteTextureWidth+" "+ RemoteTextureHeight);
-            var primaryPlaybackTexture = Texture2D.CreateExternalTexture((int)RemoteTextureWidth, (int)RemoteTextureHeight, TextureFormat.BGRA32, false, false, nativeTex);
-           // RemoteVideoImage.texture = primaryPlaybackTexture;
+            
+            var primaryPlaybackTexture = Texture2D.CreateExternalTexture((int)RemoteTextureWidth, (int)RemoteTextureHeight, TextureFormat.BGRA32, false, false, nativeTex);           
             RemoteVideoImageRender.material.mainTexture = primaryPlaybackTexture;
         }
     }
 
     private void OnDisable()
     {
-        //LocalVideoImage.texture = null;
-        //Plugin.ReleaseLocalMediaPlayback();
-        //RemoteVideoImage.texture = null;
-        //Plugin.ReleaseRemoteMediaPlayback();
+        
     }
 
     private void Update()
@@ -401,10 +397,7 @@ public class ControlScript : MonoBehaviour
 
     public void OnCallClick()
     {
-        //Debug.Log("OnCallClick");
-        //MenuControlUI.SetActive(false);
-        //RemoteUI.SetActive(true);
-        //MenuControlDisConnectUI.SetActive(true);
+        
 #if !UNITY_EDITOR
         lock (this)
         {
@@ -668,7 +661,7 @@ public class ControlScript : MonoBehaviour
                         selectedCapability = capability;
                         minSizeDiff = sizeDiff;
                     }
-                    //System.Diagnostics.Debug.WriteLine("Video device capability - " + device.Name + " - " + capability.Width + "x" + capability.Height + "@" + capability.FrameRate);
+                    
                 }
             }).Wait();
         }
@@ -686,8 +679,7 @@ public class ControlScript : MonoBehaviour
                 selectedCapability.MrcEnabled = false;
             }
             Conductor.Instance.VideoCaptureProfile = selectedCapability;
-            Conductor.Instance.UpdatePreferredFrameFormat();
-            //System.Diagnostics.Debug.WriteLine("Selected video device capability - " + selectedCapability.Width + "x" + selectedCapability.Height + "@" + selectedCapability.FrameRate);
+            Conductor.Instance.UpdatePreferredFrameFormat();            
         }
 
 #endif
@@ -702,11 +694,7 @@ public class ControlScript : MonoBehaviour
             {
                 if (status == Status.InCall)
                 {
-                    IMediaSource source;
-                    //if (Conductor.Instance.VideoCodec.Name == "H264")
-                        source = Conductor.Instance.CreateRemoteMediaStreamSource("H264");
-                   // else
-                        //source = Conductor.Instance.CreateRemoteMediaStreamSource("I420");
+                    IMediaSource source;                    
                     Plugin.LoadRemoteMediaStreamSource((MediaStreamSource)source);
                     
                     Debug.Log("Incall running"+ source.ToString());
@@ -714,11 +702,7 @@ public class ControlScript : MonoBehaviour
                 }
                 else if (status == Status.Connected)
                 {
-                    IMediaSource source;
-                    //if (Conductor.Instance.VideoCodec.Name == "H264")
-                        source = Conductor.Instance.CreateRemoteMediaStreamSource("H264");
-                    //else
-                      //  source = Conductor.Instance.CreateRemoteMediaStreamSource("I420");
+                    IMediaSource source;                    
                     Plugin.LoadRemoteMediaStreamSource((MediaStreamSource)source);
                     Debug.Log("Incall Connected");
                 }
@@ -772,16 +756,7 @@ public class ControlScript : MonoBehaviour
                     Plugin.LoadLocalMediaStreamSource((MediaStreamSource)source);
                     Conductor.Instance.EnableLocalVideoStream();
                     Conductor.Instance.UnmuteMicrophone();
-                    //if(enableVideo==true){
-                    //    Conductor.Instance.EnableLocalVideoStream();
-                    //}else{
-                    //    Conductor.Instance.DisableLocalVideoStream();
-                    //}
-                    //if(enableMicrophone==true){
-                    //    Conductor.Instance.UnmuteMicrophone();
-                    //}else{
-                    //    Conductor.Instance.MuteMicrophone();
-                    //}                    
+                                       
                 }
                 else if (status == Status.Connected)
                 {
@@ -789,16 +764,7 @@ public class ControlScript : MonoBehaviour
                     Plugin.LoadLocalMediaStreamSource((MediaStreamSource)source);
                     Conductor.Instance.EnableLocalVideoStream();
                     Conductor.Instance.UnmuteMicrophone();
-                    //if(enableVideo==true){
-                    //    Conductor.Instance.EnableLocalVideoStream();
-                    //}else{
-                    //    Conductor.Instance.DisableLocalVideoStream();
-                    //}
-                    //if(enableMicrophone==true){
-                    //    Conductor.Instance.UnmuteMicrophone();
-                    //}else{
-                    //    Conductor.Instance.MuteMicrophone();
-                    //}
+                    
                     
                 }
                 else
