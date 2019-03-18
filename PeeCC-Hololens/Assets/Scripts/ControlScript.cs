@@ -90,6 +90,10 @@ public class ControlScript : MonoBehaviour
     {
     }
     
+	//****************************************
+	//Connect to server 1.
+	//IP server 1 is ServerAddressInputField.text
+	//****************************************
     void Start()
     {
         Instance = this;
@@ -101,7 +105,10 @@ public class ControlScript : MonoBehaviour
 #endif
         ServerAddressInputField.text = "192.168.50.108";
     }
-
+	
+	//****************************************
+	//Enable view video call.
+	//****************************************
     private void OnEnable()
     {
         {
@@ -127,7 +134,11 @@ public class ControlScript : MonoBehaviour
     {
         
     }
-
+	
+	//****************************************
+	//Check Status of Disable-Enable Voice, Disable-Enable Video	
+	//Check Status: NotConnected,Connecting,Disconnecting,Connected,Calling,EndingCall,InCall
+	//****************************************
     private void Update()
     {
         if (enableMicrophone == true)
@@ -356,7 +367,7 @@ public class ControlScript : MonoBehaviour
 
     public void OnConnectClick()
     {
-        Debug.Log("OnConnectClick");
+        
         if (SocketObject != null)
         {
             SocketInit socketComponent = SocketObject.GetComponent<SocketInit>();
@@ -394,7 +405,10 @@ public class ControlScript : MonoBehaviour
         }
 #endif
     }
-
+	
+	//****************************************
+	//If status was connected. OnCallClick function will Connect To Peer		
+	//****************************************
     public void OnCallClick()
     {
         
