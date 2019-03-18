@@ -70,13 +70,7 @@ public class Move : MonoBehaviour, IManipulationHandler, IInputClickHandler
 
 
             transform.position = Vector3.Lerp(transform.position, targetPosition, DragSpeed);
-
-            //GameObject MyObject = Resources.Load("Line") as GameObject;
-            //GameObject go = Instantiate(MyObject) as GameObject;
-            //this.transform.position = new Vector3(transform.position.x+x_add, transform.position.y+y_add, transform.position.z);
-            //go.transform.localScale = new Vector3(0.035f, 0.035f, 0.035f);
-
-            // Debug.Log("X "+ targetPosition.x+" Y "+targetPosition.y+ " Z "+ targetPosition.z +" X1 "+ targetPosition.x+" Y1"+ targetPosition.y+" Z1 "+ targetPosition.z);
+            
 
         }
     }

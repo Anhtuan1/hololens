@@ -12,8 +12,7 @@ public class ClickConnect : MonoBehaviour, IInputClickHandler
 
     public void OnInputClicked(InputClickedEventData eventData)
     {
-        button4.GetComponent<Button>().onClick.Invoke();
-        Debug.Log("CONNECT");
+        button4.GetComponent<Button>().onClick.Invoke();        
     }
 
     // Use this for initialization

@@ -20,7 +20,7 @@ public class ClickCreateBoxImage : MonoBehaviour, IInputClickHandler
         
         if (parent_box != null)
         {
-            Debug.Log(click_count);
+            
             if (click_count == 0)
             {
                 CreateBox(parent_box);
@@ -31,16 +31,7 @@ public class ClickCreateBoxImage : MonoBehaviour, IInputClickHandler
                 DestroyBox(parent_box);
 
             }
-            click_count = 1;
-            // get_child = parent_box.transform.GetChild(0).gameObject;
-            //if (get_child != null)
-            //{
-            //  DestroyBox(parent_box);
-            //}
-            //else
-            //{
-            //  CreateBox(parent_box);
-            //}
+            click_count = 1;            
 
         }
 
@@ -99,7 +90,7 @@ public class ClickCreateBoxImage : MonoBehaviour, IInputClickHandler
         Vector3 center = obj.GetComponent<Collider>().bounds.center;
         Vector3 size = obj.GetComponent<Collider>().bounds.size;
 
-        // A = (center.x + (size.x)/2 ,center.y - (size.y)/2 , center.z +(size.z)/2)
+       
 
 
 
@@ -112,12 +103,13 @@ public class ClickCreateBoxImage : MonoBehaviour, IInputClickHandler
         meshA.transform.localScale = new Vector3(gap, gap2, gap3);
 
         meshA.GetComponent<Renderer>().material = boxMaterial;
-        Destroy(meshA.GetComponent<BoxCollider>());              //Remove Box Collider from the outer box //obstructing when click
+		//Remove Box Collider from the outer box //obstructing when click
+        Destroy(meshA.GetComponent<BoxCollider>());              
         meshA.transform.parent = obj.transform;
         meshA.AddComponent<BoxCollider>();
         meshA.AddComponent<ClickButtonResizeBox>();
 
-        //meshA.transform.SetParent(parentObj.transform);
+        
 
         GameObject meshB = GameObject.CreatePrimitive(PrimitiveType.Cube);
         meshB.name = "Outer Box B";
@@ -127,11 +119,11 @@ public class ClickCreateBoxImage : MonoBehaviour, IInputClickHandler
         meshB.transform.localScale = new Vector3(gap, gap2, gap3);
 
         meshB.GetComponent<Renderer>().material = boxMaterial;
-        Destroy(meshB.GetComponent<BoxCollider>());              //Remove Box Collider from the outer box //obstructing when click
+		//Remove Box Collider from the outer box //obstructing when click
+        Destroy(meshB.GetComponent<BoxCollider>());              
         meshB.transform.parent = obj.transform;
         meshB.AddComponent<BoxCollider>();
-        meshB.AddComponent<ClickButtonResizeBox>();
-        //meshB.transform.SetParent(parentObj.transform);
+        meshB.AddComponent<ClickButtonResizeBox>();        
 
 
         GameObject meshC = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -141,11 +133,12 @@ public class ClickCreateBoxImage : MonoBehaviour, IInputClickHandler
         meshC.transform.localScale = new Vector3(gap, gap2, gap3);
 
         meshC.GetComponent<Renderer>().material = boxMaterial;
-        Destroy(meshC.GetComponent<BoxCollider>());              //Remove Box Collider from the outer box //obstructing when click
+		//Remove Box Collider from the outer box //obstructing when click
+        Destroy(meshC.GetComponent<BoxCollider>());              
         meshC.transform.parent = obj.transform;
         meshC.AddComponent<BoxCollider>();
         meshC.AddComponent<ClickButtonResizeBox>();
-        //meshC.transform.SetParent(parentObj.transform);
+        
 
         GameObject meshD = GameObject.CreatePrimitive(PrimitiveType.Cube);
         meshD.name = "Outer Box D";
@@ -154,7 +147,8 @@ public class ClickCreateBoxImage : MonoBehaviour, IInputClickHandler
         meshD.transform.localScale = new Vector3(gap, gap2, gap3);
 
         meshD.GetComponent<Renderer>().material = boxMaterial;
-        Destroy(meshD.GetComponent<BoxCollider>());              //Remove Box Collider from the outer box //obstructing when click
+		//Remove Box Collider from the outer box //obstructing when click
+        Destroy(meshD.GetComponent<BoxCollider>());              
         meshD.transform.parent = obj.transform;
         meshD.AddComponent<BoxCollider>();
         meshD.AddComponent<ClickButtonResizeBox>();
@@ -166,7 +160,8 @@ public class ClickCreateBoxImage : MonoBehaviour, IInputClickHandler
         meshE.transform.localScale = new Vector3(gap, gap2, gap3);
 
         meshE.GetComponent<Renderer>().material = boxMaterial;
-        Destroy(meshE.GetComponent<BoxCollider>());              //Remove Box Collider from the outer box //obstructing when click
+		//Remove Box Collider from the outer box //obstructing when click
+        Destroy(meshE.GetComponent<BoxCollider>());              
         meshE.transform.parent = obj.transform;
         meshE.AddComponent<BoxCollider>();
         meshE.AddComponent<ClickButtonResizeBox>();
@@ -178,7 +173,8 @@ public class ClickCreateBoxImage : MonoBehaviour, IInputClickHandler
         meshF.transform.localScale = new Vector3(gap, gap2, gap3);
 
         meshF.GetComponent<Renderer>().material = boxMaterial;
-        Destroy(meshF.GetComponent<BoxCollider>());              //Remove Box Collider from the outer box //obstructing when click
+		//Remove Box Collider from the outer box //obstructing when click
+        Destroy(meshF.GetComponent<BoxCollider>());              
         meshF.transform.parent = obj.transform;
         meshF.AddComponent<BoxCollider>();
         meshF.AddComponent<ClickButtonResizeBox>();
@@ -191,7 +187,8 @@ public class ClickCreateBoxImage : MonoBehaviour, IInputClickHandler
         meshG.transform.localScale = new Vector3(gap, gap2, gap3);
 
         meshG.GetComponent<Renderer>().material = boxMaterial;
-        Destroy(meshG.GetComponent<BoxCollider>());              //Remove Box Collider from the outer box //obstructing when click
+		//Remove Box Collider from the outer box //obstructing when click
+        Destroy(meshG.GetComponent<BoxCollider>());              
         meshG.transform.parent = obj.transform;
         meshG.AddComponent<BoxCollider>();
         meshG.AddComponent<ClickButtonResizeBox>();
@@ -203,7 +200,8 @@ public class ClickCreateBoxImage : MonoBehaviour, IInputClickHandler
         meshH.transform.localScale = new Vector3(gap, gap2, gap3);
 
         meshH.GetComponent<Renderer>().material = boxMaterial;
-        Destroy(meshG.GetComponent<BoxCollider>());              //Remove Box Collider from the outer box //obstructing when click
+		//Remove Box Collider from the outer box //obstructing when click
+        Destroy(meshG.GetComponent<BoxCollider>());              
         meshH.transform.parent = obj.transform;
         meshH.AddComponent<BoxCollider>();
         meshH.AddComponent<ClickButtonResizeBox>();
@@ -216,7 +214,8 @@ public class ClickCreateBoxImage : MonoBehaviour, IInputClickHandler
         meshP.transform.localScale = new Vector3(gap, gap2, gap3);
 
         meshP.GetComponent<Renderer>().material = boxMaterial;
-        Destroy(meshP.GetComponent<BoxCollider>());              //Remove Box Collider from the outer box //obstructing when click
+		//Remove Box Collider from the outer box //obstructing when click
+        Destroy(meshP.GetComponent<BoxCollider>());              
         meshP.transform.parent = obj.transform;
         meshP.AddComponent<BoxCollider>();
         meshP.AddComponent<ClickButtonRotateBox>();
@@ -229,7 +228,8 @@ public class ClickCreateBoxImage : MonoBehaviour, IInputClickHandler
         meshQ.transform.localScale = new Vector3(gap, gap2, gap3);
 
         meshQ.GetComponent<Renderer>().material = boxMaterial;
-        Destroy(meshQ.GetComponent<BoxCollider>());              //Remove Box Collider from the outer box //obstructing when click
+		//Remove Box Collider from the outer box //obstructing when click
+        Destroy(meshQ.GetComponent<BoxCollider>());              
         meshQ.transform.parent = obj.transform;
         meshQ.AddComponent<BoxCollider>();
         meshQ.AddComponent<ClickButtonRotateBox>();
@@ -242,7 +242,8 @@ public class ClickCreateBoxImage : MonoBehaviour, IInputClickHandler
         meshM.transform.localScale = new Vector3(gap, gap2, gap3);
 
         meshM.GetComponent<Renderer>().material = boxMaterial;
-        Destroy(meshM.GetComponent<BoxCollider>());              //Remove Box Collider from the outer box //obstructing when click
+		//Remove Box Collider from the outer box //obstructing when click
+        Destroy(meshM.GetComponent<BoxCollider>());              
         meshM.transform.parent = obj.transform;
         meshM.AddComponent<BoxCollider>();
         meshM.AddComponent<ClickButtonRotateBox>();
@@ -255,7 +256,8 @@ public class ClickCreateBoxImage : MonoBehaviour, IInputClickHandler
         meshN.transform.localScale = new Vector3(gap, gap2, gap3);
 
         meshN.GetComponent<Renderer>().material = boxMaterial;
-        Destroy(meshN.GetComponent<BoxCollider>());              //Remove Box Collider from the outer box //obstructing when click
+		//Remove Box Collider from the outer box //obstructing when click
+        Destroy(meshN.GetComponent<BoxCollider>());              
         meshN.transform.parent = obj.transform;
         meshN.AddComponent<BoxCollider>();
         meshN.AddComponent<ClickButtonRotateBox>();
@@ -268,8 +270,7 @@ public class ClickCreateBoxImage : MonoBehaviour, IInputClickHandler
 
         GL.Begin(GL.LINES);
         GL.Color(Color.red);
-        //GL.Vertex3(mainPointPos.x, mainPointPos.y, mainPointPos.z);
-        // GL.Vertex3(pointPos.x, pointPos.y, pointPos.z);
+        
         GL.End();
 
 

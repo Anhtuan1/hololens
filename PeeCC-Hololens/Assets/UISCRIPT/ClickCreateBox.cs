@@ -15,11 +15,11 @@ public class ClickCreateBox : MonoBehaviour, IInputClickHandler
 
     public void OnInputClicked(InputClickedEventData eventData)
     {
-        Debug.Log(eventData.InputSource.ToString());
+        
         Destroy(this.GetComponent<ClickSofa>());
         if (parent_box != null)
         {
-            Debug.Log(click_count);
+            
             if (click_count == 0)
             {
                 CreateBox(parent_box);               
@@ -31,15 +31,7 @@ public class ClickCreateBox : MonoBehaviour, IInputClickHandler
                 
             }
             click_count = 1;
-           // get_child = parent_box.transform.GetChild(0).gameObject;
-           //if (get_child != null)
-           //{
-           //  DestroyBox(parent_box);
-           //}
-           //else
-           //{
-           //  CreateBox(parent_box);
-           //}
+           
 
         }
         
@@ -96,7 +88,7 @@ public class ClickCreateBox : MonoBehaviour, IInputClickHandler
         Vector3 center = obj.GetComponent<Collider>().bounds.center;
         Vector3 size = obj.GetComponent<Collider>().bounds.size;
 
-        // A = (center.x + (size.x)/2 ,center.y - (size.y)/2 , center.z +(size.z)/2)
+        
 
         
 
@@ -114,7 +106,7 @@ public class ClickCreateBox : MonoBehaviour, IInputClickHandler
         meshA.AddComponent<BoxCollider>();
         meshA.AddComponent<ClickButtonResizeBox>();
         
-        //meshA.transform.SetParent(parentObj.transform);
+        
 
         GameObject meshB = GameObject.CreatePrimitive(PrimitiveType.Cube);
         meshB.name = "Outer Box B";
@@ -128,7 +120,7 @@ public class ClickCreateBox : MonoBehaviour, IInputClickHandler
         meshB.transform.parent = obj.transform;
         meshB.AddComponent<BoxCollider>();
         meshB.AddComponent<ClickButtonResizeBox>();
-        //meshB.transform.SetParent(parentObj.transform);
+        
 
 
         GameObject meshC = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -142,7 +134,7 @@ public class ClickCreateBox : MonoBehaviour, IInputClickHandler
         meshC.transform.parent = obj.transform;
         meshC.AddComponent<BoxCollider>();
         meshC.AddComponent<ClickButtonResizeBox>();
-        //meshC.transform.SetParent(parentObj.transform);
+        
 
         GameObject meshD = GameObject.CreatePrimitive(PrimitiveType.Cube);
         meshD.name = "Outer Box D";
@@ -257,7 +249,7 @@ public class ClickCreateBox : MonoBehaviour, IInputClickHandler
         meshN.AddComponent<BoxCollider>();
         meshN.AddComponent<ClickButtonRotateBox>();
 
-        //DrawLine(meshA.transform.position, meshB.transform.position);
+        
         Debug.DrawLine(meshA.transform.position, meshB.transform.position, Color.red);
         Debug.DrawLine(Vector3.zero, new Vector3(1, 0, 0), Color.red);
         Vector3 mainPointPos = meshA.transform.position;
@@ -265,8 +257,7 @@ public class ClickCreateBox : MonoBehaviour, IInputClickHandler
 
         GL.Begin(GL.LINES);
         GL.Color(Color.red);
-        //GL.Vertex3(mainPointPos.x, mainPointPos.y, mainPointPos.z);
-        // GL.Vertex3(pointPos.x, pointPos.y, pointPos.z);
+        
         GL.End();
 
 

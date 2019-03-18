@@ -383,9 +383,7 @@ public class ControlScript : MonoBehaviour
                 {
                     Conductor.Instance.StartLogin(ServerAddressInputField.text, "8888");
                 }).Start();
-                status = Status.Connecting;
-                Debug.Log(ServerAddressInputField.text);
-                Debug.Log(status);                
+                status = Status.Connecting;                                
             }
             else if (status == Status.Connected)
             {
@@ -709,9 +707,8 @@ public class ControlScript : MonoBehaviour
                 if (status == Status.InCall)
                 {
                     IMediaSource source;                    
-                    Plugin.LoadRemoteMediaStreamSource((MediaStreamSource)source);
+                    Plugin.LoadRemoteMediaStreamSource((MediaStreamSource)source);                    
                     
-                    Debug.Log("Incall running"+ source.ToString());
                     
                 }
                 else if (status == Status.Connected)

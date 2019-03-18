@@ -26,8 +26,7 @@ public class ClickSofa : MonoBehaviour, IInputClickHandler
         go.AddComponent<BoxCollider>();
         go.AddComponent<DragHand>();
         Destroy(go.GetComponent<ClickSofa>());
-        //go.AddComponent<NewBehaviourScript>();
-        //go.GetComponent<NewBehaviourScript>().parent = go;
+        
         float gap = 0.02f;
         var parentObj = new GameObject();
         parentObj.transform.position = go.transform.position;
@@ -35,12 +34,12 @@ public class ClickSofa : MonoBehaviour, IInputClickHandler
         go.transform.SetParent(parentObj.transform);
 
         float changerotate = (go.transform.rotation.eulerAngles.y - 180) * (go.transform.localScale.y);
-        //Debug.Log(changerotate);
+        
 
         Vector3 center = go.GetComponent<Collider>().bounds.center;
         Vector3 size = go.GetComponent<Collider>().bounds.size;
 
-        // A = (center.x + (size.x)/2 ,center.y - (size.y)/2 , center.z +(size.z)/2)
+        
 
         GameObject meshA1 = GameObject.CreatePrimitive(PrimitiveType.Cube);
         meshA1.name = "Outer Box A";
@@ -63,10 +62,7 @@ public class ClickSofa : MonoBehaviour, IInputClickHandler
 
     private void OnDisplayDetected(MixedRealityCameraManager.DisplayType displayType)
     {
-        //var land = GameObject.Find("sofa1");
-        //land.transform.position = new Vector3(0, 0, 2);
-        //land.transform.localScale *= 50.15f;
-        //land.SetActive(displayType == MixedRealityCameraManager.DisplayType.Opaque);
+        
 
     }
     void Scale(bool up = true)

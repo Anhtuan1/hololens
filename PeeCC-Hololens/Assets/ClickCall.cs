@@ -10,8 +10,7 @@ public class ClickCall : MonoBehaviour, IInputClickHandler
     public Button button4;
 public void OnInputClicked(InputClickedEventData eventData)
     {
-        button4.GetComponent<Button>().onClick.Invoke();
-        Debug.Log("CALL");
+        button4.GetComponent<Button>().onClick.Invoke();        
     }
 
     // Use this for initialization

@@ -13,7 +13,7 @@ public class DisconnectButton : MonoBehaviour, IInputClickHandler
     public void OnInputClicked(InputClickedEventData eventData)
     {
         button4.GetComponent<Button>().onClick.Invoke();
-        Debug.Log("DISCONNECT");
+        
     }
 
     // Use this for initialization
