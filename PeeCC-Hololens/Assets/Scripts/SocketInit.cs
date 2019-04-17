@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using WindowsSocketWrapper;
 
 public class SocketInit : MonoBehaviour
@@ -9,8 +10,10 @@ public class SocketInit : MonoBehaviour
 
     public TextMesh text;
     public TextMesh check_width_height;
-    public string host = "ws://192.168.50.108:3001/socket.io/?EIO=4&transport=websocket";
+    
     public GameObject moveObject;
+    public InputField ServerAddressInputField;
+    private string host = "ws://192.168.50.108:3001/socket.io/?EIO=4&transport=websocket";
     public GameObject object_move;
     public GameObject moveObject2;
     public GameObject pen;
@@ -45,6 +48,8 @@ public class SocketInit : MonoBehaviour
     public void OnStart()
     {
         socketWrapper = new SocketWrapper();
+        host = "ws://"+ ServerAddressInputField.text + ":3001/socket.io/?EIO=4&transport=websocket";
+        Debug.Log(host);
 #if !UNITY_EDITOR
         socketWrapper.Connect(host);
         socketWrapper.OnReceiveMessenger += OnMessageArrived_Handler;

@@ -23,7 +23,7 @@ public class ControlScript : MonoBehaviour
     public uint LocalTextureHeight = 120;
     public uint RemoteTextureWidth = 640;
     public uint RemoteTextureHeight = 480;
-    
+
     public RawImage LocalVideoImage;
     public RawImage RemoteVideoImage;
     public Renderer RemoteVideoImageRender;
@@ -89,11 +89,11 @@ public class ControlScript : MonoBehaviour
     void Awake()
     {
     }
-    
-	//****************************************
-	//Connect to server 1.
-	//IP server 1 is ServerAddressInputField.text
-	//****************************************
+
+    //****************************************
+    //Connect to server 1.
+    //IP server 1 is ServerAddressInputField.text
+    //****************************************
     void Start()
     {
         Instance = this;
@@ -103,12 +103,12 @@ public class ControlScript : MonoBehaviour
         Conductor.Instance.Initialize(CoreApplication.MainView.CoreWindow.Dispatcher);
         Conductor.Instance.EnableLogging(Conductor.LogLevel.Verbose);
 #endif
-        ServerAddressInputField.text = "192.168.50.108";
+        
     }
-	
-	//****************************************
-	//Enable view video call.
-	//****************************************
+
+    //****************************************
+    //Enable view video call.
+    //****************************************
     private void OnEnable()
     {
         {
@@ -116,7 +116,7 @@ public class ControlScript : MonoBehaviour
             IntPtr nativeTex = IntPtr.Zero;
             Plugin.GetLocalPrimaryTexture(LocalTextureWidth, LocalTextureHeight, out nativeTex);
             var primaryPlaybackTexture = Texture2D.CreateExternalTexture((int)LocalTextureWidth, (int)LocalTextureHeight, TextureFormat.BGRA32, false, false, nativeTex);
-            
+
             LocalVideoImageRender.material.mainTexture = primaryPlaybackTexture;
         }
 
@@ -124,21 +124,24 @@ public class ControlScript : MonoBehaviour
             Plugin.CreateRemoteMediaPlayback();
             IntPtr nativeTex = IntPtr.Zero;
             Plugin.GetRemotePrimaryTexture(RemoteTextureWidth, RemoteTextureHeight, out nativeTex);
-            
-            var primaryPlaybackTexture = Texture2D.CreateExternalTexture((int)RemoteTextureWidth, (int)RemoteTextureHeight, TextureFormat.BGRA32, false, false, nativeTex);           
+
+            var primaryPlaybackTexture = Texture2D.CreateExternalTexture((int)RemoteTextureWidth, (int)RemoteTextureHeight, TextureFormat.BGRA32, false, false, nativeTex);
             RemoteVideoImageRender.material.mainTexture = primaryPlaybackTexture;
         }
     }
 
     private void OnDisable()
     {
-        
+        //LocalVideoImage.texture = null;
+        //Plugin.ReleaseLocalMediaPlayback();
+        //RemoteVideoImage.texture = null;
+        //Plugin.ReleaseRemoteMediaPlayback();
     }
-	
-	//****************************************
-	//Check Status of Disable-Enable Voice, Disable-Enable Video	
-	//Check Status: NotConnected,Connecting,Disconnecting,Connected,Calling,EndingCall,InCall
-	//****************************************
+
+    //****************************************
+    //Check Status of Disable-Enable Voice, Disable-Enable Video	
+    //Check Status: NotConnected,Connecting,Disconnecting,Connected,Calling,EndingCall,InCall
+    //****************************************
     private void Update()
     {
         if (enableMicrophone == true)
@@ -332,7 +335,7 @@ public class ControlScript : MonoBehaviour
             System.Diagnostics.Debug.WriteLine("Conductor initialization failed");
         }
     }
-    
+
     public void OnMoveRemote()
     {
         enableMove = !enableMove;
@@ -344,7 +347,7 @@ public class ControlScript : MonoBehaviour
         {
             RemoteUI.AddComponent<LookAt>();
         }
-    }   
+    }
 
 
     public void OnStopMoveRemote()
@@ -355,19 +358,19 @@ public class ControlScript : MonoBehaviour
 
     public void enableVideoFC()
     {
-        enableVideo = !enableVideo;        
+        enableVideo = !enableVideo;
     }
 
     public void enableMicrophoneFC()
     {
-        enableMicrophone = !enableMicrophone;        
+        enableMicrophone = !enableMicrophone;
     }
 
-    
+
 
     public void OnConnectClick()
     {
-        
+
         if (SocketObject != null)
         {
             SocketInit socketComponent = SocketObject.GetComponent<SocketInit>();
@@ -383,7 +386,9 @@ public class ControlScript : MonoBehaviour
                 {
                     Conductor.Instance.StartLogin(ServerAddressInputField.text, "8888");
                 }).Start();
-                status = Status.Connecting;                                
+                status = Status.Connecting;
+                Debug.Log(ServerAddressInputField.text);
+                Debug.Log(status);                
             }
             else if (status == Status.Connected)
             {
@@ -403,13 +408,13 @@ public class ControlScript : MonoBehaviour
         }
 #endif
     }
-	
-	//****************************************
-	//If status was connected. OnCallClick function will Connect To Peer		
-	//****************************************
+
+    //****************************************
+    //If status was connected. OnCallClick function will Connect To Peer		
+    //****************************************
     public void OnCallClick()
     {
-        
+
 #if !UNITY_EDITOR
         lock (this)
         {
@@ -673,7 +678,7 @@ public class ControlScript : MonoBehaviour
                         selectedCapability = capability;
                         minSizeDiff = sizeDiff;
                     }
-                    
+                    //System.Diagnostics.Debug.WriteLine("Video device capability - " + device.Name + " - " + capability.Width + "x" + capability.Height + "@" + capability.FrameRate);
                 }
             }).Wait();
         }
@@ -691,7 +696,8 @@ public class ControlScript : MonoBehaviour
                 selectedCapability.MrcEnabled = false;
             }
             Conductor.Instance.VideoCaptureProfile = selectedCapability;
-            Conductor.Instance.UpdatePreferredFrameFormat();            
+            Conductor.Instance.UpdatePreferredFrameFormat();
+            //System.Diagnostics.Debug.WriteLine("Selected video device capability - " + selectedCapability.Width + "x" + selectedCapability.Height + "@" + selectedCapability.FrameRate);
         }
 
 #endif
@@ -706,14 +712,23 @@ public class ControlScript : MonoBehaviour
             {
                 if (status == Status.InCall)
                 {
-                    IMediaSource source;                    
-                    Plugin.LoadRemoteMediaStreamSource((MediaStreamSource)source);                    
+                    IMediaSource source;
+                    //if (Conductor.Instance.VideoCodec.Name == "H264")
+                        source = Conductor.Instance.CreateRemoteMediaStreamSource("H264");
+                   // else
+                        //source = Conductor.Instance.CreateRemoteMediaStreamSource("I420");
+                    Plugin.LoadRemoteMediaStreamSource((MediaStreamSource)source);
                     
+                    Debug.Log("Incall running"+ source.ToString());
                     
                 }
                 else if (status == Status.Connected)
                 {
-                    IMediaSource source;                    
+                    IMediaSource source;
+                    //if (Conductor.Instance.VideoCodec.Name == "H264")
+                        source = Conductor.Instance.CreateRemoteMediaStreamSource("H264");
+                    //else
+                      //  source = Conductor.Instance.CreateRemoteMediaStreamSource("I420");
                     Plugin.LoadRemoteMediaStreamSource((MediaStreamSource)source);
                     Debug.Log("Incall Connected");
                 }

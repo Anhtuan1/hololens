@@ -1,6 +1,6 @@
 Metro
 PlayerPath?
-D:/Clone/webrtc/Run/Hololens_Git/hololens/PeeCC-Hololens/App
+D:/Clone/webrtc/Run/Hololens_Git/hololens/PeeCC-Hololens/New folder
 SceneListBegin?
 Assets/tuan3.unity
 SceneListEnd?
@@ -116,7 +116,7 @@ f1dddc522eb4451a473352e2116e6cff Assembly-CSharp.dll:HoloToolkit.Unity.InputModu
 d4463422b1b111b746cad022acbdb5b4 Assembly-CSharp.dll:HoloToolkit.Unity.InputModule.GazeManager
 9aa6ab94147cb2e3eaf7fd62b26f77ab Assembly-CSharp.dll:HoloToolkit.Unity.InputModule.SpriteCursor
 98d3576e9fda5c72d1b874f4c4d73ff1 Assembly-CSharp.dll:HoloToolkit.Unity.InputModule.XboxControllerInputSource
-879c6e5b6c4f8d3318502ace7626106b Assembly-CSharp.dll:.SocketInit
+ccba3713d86da02849374cf615f92ea4 Assembly-CSharp.dll:.SocketInit
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 dbc29a6f2739d277c10da432d73adb6d UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 8144169769d51429c4aedc8b0f92d47b UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset

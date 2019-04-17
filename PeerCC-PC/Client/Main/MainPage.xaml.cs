@@ -60,7 +60,7 @@ namespace PeerConnectionClient
         
         private bool draw_status = false;
         private bool arraw_status = false;
-
+        
 
         //send image 
         Byte[] picAttachment = new Byte[0];
@@ -113,7 +113,7 @@ namespace PeerConnectionClient
                 if (!connect)
                 {
                     //Edit ip socket
-                    socketWrapper.Connect("ws://192.168.50.108:3001/socket.io/?EIO=4&transport=websocket");
+                    socketWrapper.Connect("ws://172.16.6.10:3001/socket.io/?EIO=4&transport=websocket");
                 }
                 else
                 {
@@ -144,7 +144,7 @@ namespace PeerConnectionClient
 
                 socketWrapper.OnReceiveMessenger += OnReceivedMessage_handler;
                 socketWrapper.onDisconnect += OnDisconnection_handler;                
-                socketWrapper.Connect("ws://192.168.50.108:3001/socket.io/?EIO=4&transport=websocket");
+                socketWrapper.Connect("ws://172.16.6.10:3001/socket.io/?EIO=4&transport=websocket");
                 
             }
             catch (Exception ex)
@@ -370,7 +370,7 @@ namespace PeerConnectionClient
             
             arraw_status = true;
             Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 0);
-
+            socketWrapper.SendMessage("mess", "start_arraw");
             //Hidden button enable send position and show button disable send position
             Action_event_21.Visibility = Visibility.Visible;
             Action_event_2.Visibility = Visibility.Collapsed;
@@ -383,7 +383,7 @@ namespace PeerConnectionClient
         {
             arraw_status = false;
             Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 0);
-
+            socketWrapper.SendMessage("mess", "end_arraw");
             //Hidden button disable send position and show button enable send position
             Action_event_2.Visibility = Visibility.Visible;
             Action_event_21.Visibility = Visibility.Collapsed;
@@ -633,17 +633,34 @@ namespace PeerConnectionClient
         {
             try
             {
-                PointerPoint ptrPt = e.GetCurrentPoint(VideoBorder);
-                ObjectModel obj = new ObjectModel();
-
-                int coorX = (int)ptrPt.Position.X;
-                int coorY = (int)ptrPt.Position.Y;
-                if (coorY < 0) { coorY = 0; }
-                if (coorY > 746) { coorY = 746; }
-                string mesg = "{" + string.Format("x:{0},y:{1}", coorX, coorY) + "}";
                 if (flag_set == true)
                 {
-                    
+                    PointerPoint ptrPt = e.GetCurrentPoint(VideoBorder);
+                    ObjectModel obj = new ObjectModel();
+
+                    int coorX = (int)ptrPt.Position.X;
+                    int coorY = (int)ptrPt.Position.Y;
+                    if (coorY < 0) { coorY = 0; }
+                    if (coorY > 746) { coorY = 746; }                
+                
+                    string mesg = "{" + string.Format("x:{0},y:{1}", coorX, coorY) + "}";
+                    points.Add(new Windows.Foundation.Point(coorX, (int)ptrPt.Position.Y));
+                    line_demo.Points = points;
+                    Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Pin, 0);
+                    socketWrapper.SendMessage("mess", mesg);
+                }
+
+                if (arraw_status == true)
+                {
+                    PointerPoint ptrPt = e.GetCurrentPoint(VideoBorder);
+                    ObjectModel obj = new ObjectModel();
+
+                    int coorX = (int)ptrPt.Position.X;
+                    int coorY = (int)ptrPt.Position.Y;
+                    if (coorY < 0) { coorY = 0; }
+                    if (coorY > 746) { coorY = 746; }
+
+                    string mesg = "Poisition {" + string.Format("x:{0},y:{1}", coorX, coorY) + "}";
                     points.Add(new Windows.Foundation.Point(coorX, (int)ptrPt.Position.Y));
                     line_demo.Points = points;
                     Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Pin, 0);
